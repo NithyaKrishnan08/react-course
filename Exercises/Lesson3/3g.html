@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React useState</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+      function DisplayText({ inputText, setInputText }) {
+        function handleInputText(event) {
+          setInputText(event.target.value);
+        }
+
+        function handleReset() {
+          setInputText('');
+        }
+
+        function handleExample() {
+          setInputText('Alice');
+        }
+
+        return (
+          <>
+            <input 
+              placeholder="Type a name here" 
+              onChange={handleInputText} 
+              value={inputText}
+            />
+            <button onClick={handleReset}>Reset</button>
+            <button onClick={handleExample}>Example</button>
+            <p>Hello {inputText}</p>
+          </>
+        );
+      }
+
+      function App() {
+        const [inputText, setInputText] = React.useState('');
+        return (
+          <>
+            <DisplayText 
+              inputText={inputText}
+              setInputText={setInputText}
+            />
+          </>
+        );
+      }
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>

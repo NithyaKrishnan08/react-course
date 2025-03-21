@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JS Clock</title>
+    <style>
+      body {
+        font-family: Arial;
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .current-time {
+        font-size: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev@8.4.0/dayjs.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      function TimeNow( {time, setTime} ) {
+        React.useEffect(() => {
+          setInterval(() => {
+            console.log('run code');
+            setTime(dayjs().format('HH:mm:ss'));
+        }, 1000);
+        }, []);
+
+        return (
+          <>
+            <p className="current-time">Current time: {time}</p>
+          </>
+        );
+      }
+
+      function App() {
+        const [time, setTime] = React.useState(dayjs().format('HH:mm:ss'));
+        return (
+          <>
+            <TimeNow 
+              time={time}
+              setTime={setTime}
+            />
+          </> 
+        ); 
+      }
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>

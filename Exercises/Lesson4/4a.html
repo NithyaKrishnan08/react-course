@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ON OFF Button</title>
+    <style>
+      body {
+        font-family: Arial;
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .on-button {
+        background-color: rgb(25, 135, 84);
+        color: white;
+        padding: 12px 20px;
+        margin-left: 10px;
+        border: none;
+        border-radius: 10px;
+        font-size: 15px;
+        cursor: pointer;
+      } 
+
+      .off-button {
+        background-color: rgb(220, 53, 69);
+        color: white;
+        padding: 12px 20px;
+        margin-left: 10px;
+        border: none;
+        border-radius: 10px;
+        font-size: 15px;
+        cursor: pointer;
+      } 
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      function ButtonComponent() {
+        const [isButtonOn, setIsButtonOn] = React.useState(false);
+
+        function handleClick() {
+          setIsButtonOn(!isButtonOn);
+          console.log(isButtonOn);
+        }
+
+        return (
+          <>
+            {isButtonOn ? (
+              <button 
+            className="on-button"
+            onClick={handleClick}
+            >
+              ON
+            </button>
+            ) : (<button 
+            className="off-button"
+            onClick={handleClick}
+            >
+              OFF
+            </button>)}
+            </>  
+        );
+      }
+
+      function App() {
+        return (
+          <>
+            <ButtonComponent /> 
+          </>
+        );
+      }
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
